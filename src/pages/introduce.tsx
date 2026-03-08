@@ -10,8 +10,8 @@ export default function App() {
     <div className="min-h-svh">
       <div className="fixed px-5 bg-foreground/2 py-3 top-0 flex gap-4 w-full">
         <div className="border-r-2 pr-2 flex gap-2 items-center">
-          <Icon className="size-8" />
-          <p className="text-lg hidden sm:block font-mono">{env.title}</p>
+          <Icon className="size-6" />
+          <p className="hidden sm:block font-mono">{env.title}</p>
         </div>
 
         <div className="ml-auto sm:border-l-2 pl-2 flex gap-2 items-center">
