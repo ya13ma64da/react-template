@@ -25,7 +25,11 @@ export default function App() {
       <motion.div 
         initial={{ opacity: 0, y: 50 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5, ease: "easeOut" }}
+        transition={{
+          type: "spring",
+          stiffness: 100,
+          damping: 20
+        }}
       >
         <div className="w-full max-w-sm">
           <div className={cn("flex flex-col gap-6")}>
@@ -78,8 +82,7 @@ export default function App() {
               </FieldGroup>
             </form>
             <FieldDescription className="px-6 text-center">
-              By clicking continue, you agree to our <a href="#">Terms of Service</a>{" "}
-              and <a href="#">Privacy Policy</a>.
+              By clicking continue, you agree to our <Link to="/terms">Terms of Service</Link> and <Link to="/privacy">Privacy Policy</Link>.
             </FieldDescription>
           </div>
         </div>
