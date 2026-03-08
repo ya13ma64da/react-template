@@ -1,5 +1,9 @@
+import { signout } from "@/lib/signin";
+
 export default function App() {
   return (
-    <div>hello world</div>
+    <div className="min-h-svh">
+      <button onClick={signout}>Signout</button>
+    </div>
   )
 }
