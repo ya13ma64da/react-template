@@ -3,3 +3,6 @@ node_modules
 *.log
 dist
 scripts/secret.json
+.firebaserc
+functions/src/secret.json
+firebase-data
