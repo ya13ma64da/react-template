@@ -52,24 +52,15 @@
   - `firebase login`でプロジェクトを作成したアカウントでログインしてください。
   - `.firebaserc`を自分のプロジェクトIDに変更してください。
 
-- .env(環境変数)の設定
-  - VITE_TITLE
-  - VITE_DESCRIPTION
-  - VITE_FIREBASE_API_KEY
-  - VITE_FIREBASE_AUTH_DOMAIN
-  - VITE_PROJECT_ID
-  - VITE_FIREBASE_STORAGE_BUCKET
-  - VITE_FIREBASE_MESSAGING_SENDER_ID
-  - VITE_FIREBASE_APP_ID
-  - を設定してください。
-
 - scripts/secret.jsonの設定
   - Firebase Consoleでプロジェクトの設定のサービスアカウントに移動してください。
   - Firebase Admin SDKの新しい秘密鍵を作成を押してダウンロードしたJSONの名前を`secret.json`に変更して`scripts`配下に配置してください。
 
 - Firestoreの初期データの作成
   - `npm run emulator`でエミュレーターを起動しておいてください。
-  - `npm run setup`でFirestoreの初期データを本番用とエミュレーター用どっちも作成します。
+
+- セットアップコマンドの実行
+  - `npm run setup`で画面の通りにいろいろ入力してください。
 
 - GitHubに公開&Cloudflare Pagesの接続
   - GitHubにプロジェクトを公開してください。

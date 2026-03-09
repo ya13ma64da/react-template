@@ -5,24 +5,44 @@ import chalk from "chalk"
 import { select, text } from "@clack/prompts"
 import fs from "fs"
 
-// 初期化
-admin.initializeApp({
-  credential: admin.credential.cert(secret),
-})
+function logInfo(message) {
+  console.log(chalk.blue(`|  Info: ${message}`))
+}
 
-const db = admin.firestore()
-const emulatorDb = admin.firestore()
+function logWarn(message) {
+  console.log(chalk.yellow(`|  Warn: ${message}`))
+}
+
+function logComplete(message) {
+  console.log(chalk.green(`|  Complete: ${message}`))
+}
+
+// 本番の初期化
+const productApp = admin.initializeApp({ credential: admin.credential.cert(secret) })
+const productDb = productApp.firestore()
+
+// エミュレーターの初期化
+const emulatorApp = admin.initializeApp({ credential: admin.credential.cert(secret) }, "emulatorApp")
+const emulatorDb = emulatorApp.firestore()
+emulatorDb.settings({ host: "localhost:8080", ssl: false })
 let isEmulator = true
 
-try {
-  // エミュレーターに接続
-  emulatorDb.settings({
-    host: "localhost:8080",
-    ssl: false
-  })
-} catch {
-  isEmulator = false
-  console.log(chalk.yellow("Since the emulator is not running, the initial data settings will only be set for production use."))
+async function checkEmulator() {
+  logInfo("Connecting firebase emulator...")
+
+  // 5秒で接続できなかったらisEmulatorをfalseにする
+  const controller = new AbortController()
+  const timeout = setTimeout(() => controller.abort(), 500)
+
+  try {
+    await emulatorDb.collection("test").get({ signal: controller.signal })
+    logInfo("Connected firebase emulator!")
+  } catch {
+    isEmulator = false
+    logWarn("Emulator not running, using only production settings.")
+  } finally {
+    clearTimeout(timeout)
+  }
 }
 
 async function startup() {
@@ -35,17 +55,17 @@ async function startup() {
   })
 
   if (choice === 'no') {
-    console.log(chalk.yellow("Setup is cancelled."))
+    logWarn("Setup is cancelled.")
     process.exit(0)
   } else {
-    console.log(chalk.green("Welcome to React Template Setup!"))
+    logComplete("Welcome to React Template Setup!")
   }
 }
 
 async function createEnv() {
   // 案内
-  console.log(chalk.blue("Now, let's set up the .env&.firebaserc file! & .firebaserc!"))
-  console.log(chalk.blue("Please enter the following information."))
+  logInfo("Now, let's set up the .env and .firebaserc file! & .firebaserc!")
+  logInfo("Please enter the following information.")
 
   // 情報取得
   const title = await text({ message: "Please enter your project title" })
@@ -68,12 +88,13 @@ async function createEnv() {
     }
   }, null, 2))
 
-  console.log(chalk.green(".env&.firebaserc file has been created successfully!"))
+  logComplete(".env and .firebaserc file has been created successfully!")
 }
 
 async function createFirestore() {
-  console.log(chalk.blue("Now, let's create first firestore data!"))
-  console.log(chalk.blue("Please enter the following information."))
+  // 案内
+  logInfo("Now, let's create first firestore data!")
+  logInfo("Please enter the following information.")
 
   // 情報取得
   const title = await text({ message: "Please enter your first update info title here." })
@@ -94,20 +115,20 @@ async function createFirestore() {
     time: new Date()
   }
 
-  // 本番用
-  await db.collection("public").doc("terms").set(policyData)
-  await db.collection("public").doc("privacy").set(policyData)
-  await db.collection("public").doc("updates").set(updateData)
-
+  // エミュレーター用
   if(isEmulator) {
-    // エミュレーター用
     await emulatorDb.collection("public").doc("terms").set(policyData)
     await emulatorDb.collection("public").doc("privacy").set(policyData)
     await emulatorDb.collection("public").doc("updates").set(updateData)
   }
 
-  console.log(chalk.green("Complete to create first firestore data!"))
-  console.log(chalk.blue("You can set the policy yourself later."))
+  // 本番用
+  await productDb.collection("public").doc("terms").set(policyData)
+  await productDb.collection("public").doc("privacy").set(policyData)
+  await productDb.collection("public").doc("updates").set(updateData)
+
+  logComplete("Complete to create first firestore data!")
+  logWarn("You should set the policy yourself later.")
 }
 
 (async () => {
@@ -115,6 +136,9 @@ async function createFirestore() {
   console.log(chalk.blue(figlet.textSync("rt setup", {
     font: "ansi shadow"
   })))
+
+  // エミュレーターの接続確認
+  await checkEmulator()
 
   // 初期案内
   await startup()
@@ -129,7 +153,7 @@ async function createFirestore() {
   await createFirestore()
 
   // 終了
-  console.log(chalk.green("The setup is now complete!"))
-  console.log(chalk.green("Thank you for your hard work!"))
+  logComplete("The setup is now complete!")
+  logComplete("Thank you for your hard work!")
   process.exit(0)
 })()
