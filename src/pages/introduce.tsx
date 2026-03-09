@@ -4,12 +4,16 @@ import { Link } from "react-router-dom"
 import { env } from "@/lib/env"
 import { motion } from "framer-motion"
 import { Icon } from "@/components/mine/icon"
+import { TypeAnimation } from "react-type-animation"
+import { pageSetup } from "@/lib/pageSetup"
 
 export default function App() {
+  pageSetup(env.description)
+
   return (
     <div className="min-h-svh">
-      <div className="fixed px-5 bg-foreground/2 py-3 top-0 flex gap-4 w-full">
-        <div className="border-r-2 pr-2 flex gap-2 items-center">
+      <div className="fixed px-5 bg-background py-3 top-0 flex gap-4 w-full">
+        <div className="sm:border-r-2 pr-2 flex gap-2 items-center">
           <Icon className="size-6" />
           <p className="hidden sm:block font-mono">{env.title}</p>
         </div>
@@ -36,19 +40,16 @@ export default function App() {
           }}
           className="flex flex-col gap-6 justify-center min-h-svh items-center"
         >
-          <motion.div
-            className="flex flex-col gap-1.5 text-center"
-            initial={{ opacity: 0, y: 50 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{
-              type: "spring",
-              stiffness: 100,
-              damping: 20
-            }}
-          >
-            <p className="text-4xl font-mono">{env.title}</p>
-            <p className="text-2xl font-mono">{env.description}</p>
-          </motion.div>
+          <div className="flex flex-col gap-1.5 text-center">
+            <TypeAnimation
+              className="text-4xl font-mono"
+              sequence={[env.description, 4000, env.title, 4000]}
+              speed={50}
+              repeat={Infinity}
+              wrapper="p"
+              cursor={true}
+            />
+          </div>
 
           <div className="flex gap-2 items-center">
             <Link to="/signin">

@@ -1,5 +1,7 @@
 import { initializeApp } from "firebase/app"
-import { getAuth } from "firebase/auth"
+import { getAuth, connectAuthEmulator } from "firebase/auth"
+import { getFirestore, connectFirestoreEmulator } from "firebase/firestore"
+import { getFunctions, connectFunctionsEmulator } from "firebase/functions"
 
 const firebaseConfig = {
   apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
@@ -10,5 +12,15 @@ const firebaseConfig = {
   appId: import.meta.env.VITE_FIREBASE_APP_ID
 }
 
+// 初期化
 const app = initializeApp(firebaseConfig)
 export const auth = getAuth(app)
+export const db = getFirestore(app)
+export const functions = getFunctions(app)
+
+// エミュレート
+if (import.meta.env.DEV) {
+  connectAuthEmulator(auth, "http://localhost:9099")
+  connectFirestoreEmulator(db, "localhost", 8080)
+  connectFunctionsEmulator(functions, "localhost", 5001)
+}

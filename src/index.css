@@ -127,3 +127,7 @@
     @apply font-sans;
     }
 }
+
+p.firebase-emulator-warning {
+  display: none;
+}

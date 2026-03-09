@@ -1,37 +1,39 @@
-import text from "@/assets/privacy.txt?raw"
 import { Button } from "@/components/ui/button"
-import { motion } from "framer-motion"
-import { Link } from "react-router-dom"
+import { doc } from "firebase/firestore"
+import { useDocument } from "react-firebase-hooks/firestore"
+import { db } from "@/lib/firebase"
+import { errorLog } from "@/lib/log"
 
 export default function App() {
+  const [value, loading, error] = useDocument(
+    doc(db, "public", "privacy")
+  )
+
+  // プライバシーデータの取得
+  const data = value?.data()?.main
+
+  // エラーの確認
+  if (error) {
+    errorLog(error)
+  }
+
   return (
-    <div className="min-h-svh px-4 py-8 flex flex-col items-center justify-center">
-      <div className="flex flex-col gap-5 w-full max-w-md">
-        <div className="text-center flex flex-col gap-2">
+    <div className="min-h-svh px-4 py-35 flex flex-col items-center justify-center">
+      <div className="flex flex-col gap-5 w-full max-w-3xl">
+        <div className="flex flex-col gap-2">
           <p className="text-3xl">Privacy Policy</p>
-          <p className="text-xl">This page clearly states our privacy policy. Please be sure to read it before using this service.</p>
+          <p className="text-xl">This page states our privacy policy. Before using this service, please read this policy and make sure you understand how your personal information will be used.</p>
         </div>
 
-        <motion.div
-          className="p-4 bg-foreground/5 rounded-lg"
-          initial={{ opacity: 0, x: -50 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{
-            type: "spring",
-            stiffness: 100,
-            damping: 20
-          }}
-        >
-          {text}
-        </motion.div>
+        {!loading && (
+          error ? (
+            <p>Sorry. An error occurred while loading the privacy policy.</p>
+          ) : (
+            <p>{data || "Sorry. Data did not exist."}</p>
+          )
+        )}
 
-        <div className="flex gap-2">
-          <Link to="/">
-            <Button>Go home</Button>
-          </Link>
-
-          <Button className="w-fit" onClick={() => window.history.back()}>Back page</Button>
-        </div>
+        <Button className="w-fit" onClick={() => window.history.back()}>Back page</Button>
       </div>
     </div>
   )
