@@ -6,12 +6,12 @@ import { components, hooks, utils } from '@generouted/react-router/client'
 export type Path =
   | `*`
   | `/`
-  | `/document`
   | `/introduce`
   | `/privacy`
   | `/signin`
   | `/signup`
   | `/terms`
+  | `/updates`
 
 export type Params = {
   '/*': { '*': string }

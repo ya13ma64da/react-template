@@ -6,7 +6,7 @@ import { useEffect } from "react"
 export function useSighinSetup() {
     const [user, loading] = useAuthState(auth)
     const navigate = useNavigate()
-    const ignorePaths = ["/signin", "/signup", "/introduce", "/document", "/terms", "/privacy"]
+    const ignorePaths = ["/signin", "/signup", "/introduce", "/updates", "/terms", "/privacy"]
     const absoluteIgnorePaths = ["/signin", "/signup", "/introduce"]
 
     useEffect(() => {

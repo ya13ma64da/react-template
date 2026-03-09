@@ -8,7 +8,9 @@
     "build": "tsc -b && vite build",
     "lint": "eslint .",
     "preview": "vite preview",
-    "emulate": "firebase emulators:start --import=./data --export-on-exit"
+    "emulator": "firebase emulators:start --import=./firebase-data --export-on-exit",
+    "deploy": "firebase deploy",
+    "setup": "node scripts/setup.js"
   },
   "dependencies": {
     "@fontsource-variable/geist": "^5.2.8",
@@ -17,13 +19,13 @@
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "firebase": "^12.10.0",
+    "firebase-admin": "^13.7.0",
     "framer-motion": "^12.35.1",
     "lucide-react": "^0.577.0",
     "radix-ui": "^1.4.3",
     "react": "^19.2.0",
     "react-dom": "^19.2.0",
     "react-firebase-hooks": "^5.1.1",
-    "react-icons": "^5.6.0",
     "react-router-dom": "^7.13.1",
     "react-type-animation": "^3.2.0",
     "shadcn": "^4.0.0",

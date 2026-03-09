@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button"
-import { Book } from "lucide-react"
+import { Info, LogIn } from "lucide-react"
 import { Link } from "react-router-dom"
 import { env } from "@/lib/env"
 import { motion } from "framer-motion"
@@ -19,12 +19,12 @@ export default function App() {
         </div>
 
         <div className="ml-auto sm:border-l-2 pl-2 flex gap-2 items-center">
-          <Link to="/signin">
-            <Button>Get started</Button>
+          <Link to="/updates" className="hidden sm:block">
+            <Button>Updates</Button>
           </Link>
 
-          <Link to="/document" className="hidden sm:block">
-            <Button><Book /> Document</Button>
+          <Link to="/signin">
+            <Button><LogIn /> Sign in</Button>
           </Link>
         </div>
       </div>
@@ -56,8 +56,8 @@ export default function App() {
               <Button variant="outline">Get started</Button>
             </Link>
 
-            <Link to="/document">
-              <Button><Book /> View document</Button>
+            <Link to="/updates">
+              <Button><Info /> View Updates</Button>
             </Link>
           </div>
         </motion.div>

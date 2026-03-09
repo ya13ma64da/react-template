@@ -1,26 +1,21 @@
-import { cn } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
-import {
-  Field,
-  FieldDescription,
-  FieldGroup,
-  FieldLabel,
-  FieldSeparator,
-} from "@/components/ui/field"
+import { Field, FieldDescription, FieldGroup, FieldLabel, FieldSeparator } from "@/components/ui/field"
 import { Input } from "@/components/ui/input"
-
-import { FaGoogle, FaApple } from "react-icons/fa"
 import { Link } from "react-router-dom"
 import { Icon } from "@/components/mine/icon"
 import { signinWithGoogle } from "@/lib/signin"
 import { useNavigate } from "react-router-dom"
 import { motion } from "framer-motion"
+import { pageSetup } from "@/lib/pageSetup"
+import { Google } from "@/components/mine/icons/google"
+import { Apple } from "@/components/mine/icons/apple"
 
 export default function App() {
   const navigate = useNavigate()
+  pageSetup("Login")
 
   return (
-    <div className="flex min-h-svh flex-col items-center justify-center p-6 md:p-10 overflow-hidden">
+    <div className="flex min-h-svh flex-col items-center justify-center px-4 overflow-hidden">
       <motion.div 
         initial={{ opacity: 0, y: 50 }}
         animate={{ opacity: 1, y: 0 }}
@@ -31,18 +26,21 @@ export default function App() {
         }}
       >
         <div className="w-full max-w-sm">
-          <div className={cn("flex flex-col gap-6")}>
+          <div className="flex flex-col gap-6">
             <form>
               <FieldGroup>
-                <div className="flex flex-col items-center gap-2 text-center">
+                <div className="flex flex-col items-center gap-2 text-center px-6">
                   <Link to="/introduce">
                     <Icon className="size-8" />
                   </Link>
-                  <h1 className="text-xl font-bold">Let's create your account.</h1>
+
+                  <p className="text-xl font-bold">Let's create your account.</p>
+
                   <FieldDescription>
-                    Already have account? <Link to="/signin">Signin</Link>
+                    Alredy have account? <Link to="/signup">Sign in</Link>
                   </FieldDescription>
                 </div>
+
                 <Field>
                   <FieldLabel htmlFor="email">Email</FieldLabel>
                   <Input
@@ -61,25 +59,30 @@ export default function App() {
                     required
                   />
                 </Field>
+
                 <Field>
-                  <Button type="submit">Create account</Button>
+                  <Button type="submit">Create Account</Button>
                 </Field>
+
                 <FieldSeparator>Or</FieldSeparator>
+
                 <Field className="grid gap-4 sm:grid-cols-2">
                   <Button variant="outline" type="button">
-                    <FaApple />
+                    <Apple />
                     Continue with Apple
                   </Button>
+
                   <Button variant="outline" type="button" onClick={async () => {
                     await signinWithGoogle()
                     navigate("/")
                   }}>
-                    <FaGoogle />
+                    <Google />
                     Continue with Google
                   </Button>
                 </Field>
               </FieldGroup>
             </form>
+
             <FieldDescription className="px-6 text-center">
               By clicking continue, you agree to our <Link to="/terms">Terms of Service</Link> and <Link to="/privacy">Privacy Policy</Link>.
             </FieldDescription>

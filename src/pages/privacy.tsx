@@ -3,14 +3,17 @@ import { doc } from "firebase/firestore"
 import { useDocument } from "react-firebase-hooks/firestore"
 import { db } from "@/lib/firebase"
 import { errorLog } from "@/lib/log"
+import { pageSetup } from "@/lib/pageSetup"
 
 export default function App() {
+  pageSetup("Privacy policy")
+
   const [value, loading, error] = useDocument(
     doc(db, "public", "privacy")
   )
 
   // プライバシーデータの取得
-  const data = value?.data()?.main
+  const data = value?.data()
 
   // エラーの確認
   if (error) {
@@ -29,7 +32,10 @@ export default function App() {
           error ? (
             <p>Sorry. An error occurred while loading the privacy policy.</p>
           ) : (
-            <p>{data || "Sorry. Data did not exist."}</p>
+            <div className="flex flex-col gap-2">
+              <p className="text-xl">{data?.time?.toDate().toLocaleDateString() || "No date"}</p>
+              <p>{data?.content || "Sorry. Data did not exist."}</p>
+            </div>
           )
         )}
 
