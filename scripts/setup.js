@@ -69,7 +69,7 @@ async function createEnv() {
 
   // 情報取得
   const title = await text({ message: "Please enter your project title" })
-  const description = await text({ message: "Project description" })
+  const description = await text({ message: "Description" })
   const firebase_api_key = await text({ message: "Firebase API Key" })
   const firebase_auth_domain = await text({ message: "Firebase Auth Domain" })
   const firebase_project_id = await text({ message: "Firebase Project ID" })
@@ -78,8 +78,14 @@ async function createEnv() {
   const firebase_app_id = await text({ message: "Firebase App ID" })
   
   // .envの作成
-  const envContents = `VITE_TITLE=${title}\nVITE_DESCRIPTION=${description}\nVITE_FIREBASE_API_KEY=${firebase_api_key}\nVITE_FIREBASE_AUTH_DOMAIN=${firebase_auth_domain}\nVITE_FIREBASE_PROJECT_ID=${firebase_project_id}\nVITE_FIREBASE_STORAGE_BUCKET=${firebase_storage_bucket}\nVITE_FIREBASE_MESSAGING_SENDER_ID=${firebase_messaging_sender_id}\nVITE_FIREBASE_APP_ID=${firebase_app_id}\n`
+  const envContents = `VITE_TITLE=${title}\nVITE_FIREBASE_API_KEY=${firebase_api_key}\nVITE_FIREBASE_AUTH_DOMAIN=${firebase_auth_domain}\nVITE_FIREBASE_PROJECT_ID=${firebase_project_id}\nVITE_FIREBASE_STORAGE_BUCKET=${firebase_storage_bucket}\nVITE_FIREBASE_MESSAGING_SENDER_ID=${firebase_messaging_sender_id}\nVITE_FIREBASE_APP_ID=${firebase_app_id}\n`
   fs.writeFileSync(".env", envContents)
+
+  // 翻訳ファイル更新
+  const translatePath = "./src/translate/en.json"
+  const translateFile = JSON.parse(fs.readFileSync(translatePath, "utf8"))
+  translateFile.title.introduce = description
+  fs.writeFileSync(translatePath, JSON.stringify(translateFile, null, 2))
 
   // firebase_project_idから.firebasercの作成
   fs.writeFileSync(".firebaserc", JSON.stringify({
@@ -105,14 +111,14 @@ async function createFirestore() {
       {
         title: title,
         description: description,
-        time: new Date()
+        date: new Date()
       }
     ]
   }
 
   const policyData = {
     content: "Sample",
-    time: new Date()
+    date: new Date()
   }
 
   // エミュレーター用

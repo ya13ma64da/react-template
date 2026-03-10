@@ -1,46 +1,43 @@
-import { Button } from "@/components/ui/button"
-import { doc } from "firebase/firestore"
-import { useDocument } from "react-firebase-hooks/firestore"
-import { db } from "@/lib/firebase"
 import { errorLog } from "@/lib/log"
-import { pageSetup } from "@/lib/pageSetup"
+import { useFirestore } from "@/lib/hooks/useFirestore"
+import { useTranslation } from "react-i18next"
+import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert"
+import { SimpleTemplate } from "@/components/mine/templates/simple"
 
-export default function App() {
-  pageSetup("Privacy policy")
+function Terms() {
+  const { t } = useTranslation()
 
-  const [value, loading, error] = useDocument(
-    doc(db, "public", "privacy")
-  )
+  const { firestoreResult, firestoreLoading, firestoreError } = useFirestore("public", "privacy")
+  const privacyData = firestoreResult?.data()
 
-  // プライバシーデータの取得
-  const data = value?.data()
+  if (firestoreLoading) return null
 
-  // エラーの確認
-  if (error) {
-    errorLog(error)
+  if (firestoreError) {
+    errorLog(firestoreError)
+    return <p>{t("main.error")}</p>
+  }
+
+  if (!privacyData) {
+    return <p>{t("main.noData")}</p>
   }
 
   return (
-    <div className="min-h-svh px-4 py-35 flex flex-col items-center justify-center">
-      <div className="flex flex-col gap-5 w-full max-w-3xl">
-        <div className="flex flex-col gap-2">
-          <p className="text-3xl">Privacy Policy</p>
-          <p className="text-xl">This page states our privacy policy. Before using this service, please read this policy and make sure you understand how your personal information will be used.</p>
-        </div>
+    <Alert className="flex flex-col gap-2">
+      <AlertTitle>
+        {t("components.policy.writeDate")} - {privacyData.date.toDate().toLocaleDateString() || t("main.noData")}
+      </AlertTitle>
 
-        {!loading && (
-          error ? (
-            <p>Sorry. An error occurred while loading the privacy policy.</p>
-          ) : (
-            <div className="flex flex-col gap-2">
-              <p className="text-xl">{data?.time?.toDate().toLocaleDateString() || "No date"}</p>
-              <p>{data?.content || "Sorry. Data did not exist."}</p>
-            </div>
-          )
-        )}
+      <AlertDescription>{privacyData.content || t("main.noData")}</AlertDescription>
+    </Alert>
+  )
+}
 
-        <Button className="w-fit" onClick={() => window.history.back()}>Back page</Button>
-      </div>
-    </div>
+export default function App() {
+  const { t } = useTranslation()
+
+  return (
+    <SimpleTemplate title={t("title.privacy")} description={t("pages.privacy.description")}>
+      <Terms />
+    </SimpleTemplate>
   )
 }

@@ -9,6 +9,7 @@ export type Path =
   | `/admin`
   | `/introduce`
   | `/privacy`
+  | `/settings`
   | `/signin`
   | `/signup`
   | `/terms`

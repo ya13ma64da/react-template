@@ -1,10 +1,10 @@
 import { Button } from "@/components/ui/button"
 import { Link } from "react-router-dom"
 import { motion } from "framer-motion"
-import { pageSetup } from "@/lib/pageSetup"
+import { useTranslation } from "react-i18next"
 
 export default function App() {
-  pageSetup("404 | Not found")
+  const { t } = useTranslation()
 
   return (
     <div className="min-h-svh flex flex-col justify-center items-center overflow-hidden">
@@ -20,15 +20,15 @@ export default function App() {
       >
         <div className="flex gap-2 flex-col">
           <p className="text-3xl">404 | Not Found</p>
-          <p className="text-xl">Sorry. We couldn't find the page you're looking for.</p>
+          <p className="text-xl">{t("pages.notfound.message")}</p>
         </div>
 
         <div className="flex gap-2">
           <Link to="/">
-            <Button>Go home</Button>
+            <Button>{t("pages.notfound.goHome")}</Button>
           </Link>
 
-          <Button onClick={() => window.history.back()}>Back page</Button>
+          <Button onClick={() => window.history.back()}>{t("main.goBack")}</Button>
         </div>
       </motion.div>
     </div>

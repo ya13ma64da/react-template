@@ -1,34 +1,19 @@
 import { Button } from "@/components/ui/button"
-import { Info, LogIn } from "lucide-react"
+import { Info } from "lucide-react"
 import { Link } from "react-router-dom"
 import { env } from "@/lib/env"
 import { motion } from "framer-motion"
-import { Icon } from "@/components/mine/icon"
 import { TypeAnimation } from "react-type-animation"
-import { pageSetup } from "@/lib/pageSetup"
+import { useTranslation } from "react-i18next"
+import { HeaderParts } from "@/components/mine/parts/header"
+import { LogoParts } from "@/components/mine/parts/logo"
 
 export default function App() {
-  pageSetup(env.description)
+  const { t } = useTranslation()
 
   return (
     <div className="min-h-svh">
-      <div className="fixed px-5 bg-background py-3 top-0 flex gap-4 w-full">
-        <div className="sm:border-r-2 pr-2 flex gap-2 items-center">
-          <Icon className="size-6" />
-          <p className="hidden sm:block font-mono">{env.title}</p>
-        </div>
-
-        <div className="ml-auto sm:border-l-2 pl-2 flex gap-2 items-center">
-          <Link to="/updates" className="hidden sm:block">
-            <Button>Updates</Button>
-          </Link>
-
-          <Link to="/signin">
-            <Button><LogIn /> Sign in</Button>
-          </Link>
-        </div>
-      </div>
-
+      <HeaderParts />
       <div className="min-h-svh overflow-hidden px-4">
         <motion.div
           initial={{ opacity: 0, y: 50 }}
@@ -43,7 +28,7 @@ export default function App() {
           <div className="flex flex-col gap-1.5 text-center">
             <TypeAnimation
               className="text-4xl font-mono"
-              sequence={[env.description, 4000, env.title, 4000]}
+              sequence={[t("title.introduce"), 4000, env.title, 4000]}
               speed={50}
               repeat={Infinity}
               wrapper="p"
@@ -53,21 +38,24 @@ export default function App() {
 
           <div className="flex gap-2 items-center">
             <Link to="/signin">
-              <Button variant="outline">Get started</Button>
+              <Button variant="outline">{t("pages.introduce.getStarted")}</Button>
             </Link>
 
             <Link to="/updates">
-              <Button><Info /> View Updates</Button>
+              <Button><Info /> {t("pages.introduce.viewUpdates")}</Button>
             </Link>
           </div>
         </motion.div>
       </div>
 
-      <footer className="p-5 w-full border-t-2 flex gap-3 flex-col sm:flex-row">
-        <p>&copy; {new Date().getFullYear()} {env.title}. All rights reserved.</p>
-        <div className="flex gap-3 sm:ml-auto">
-          <Link to="/privacy">Privacy Policy</Link>
-          <Link to="/terms">Terms of Service</Link>
+      <footer className="p-5 w-full border-t-2 flex flex-col gap-3">
+        <LogoParts type="black" />
+        <div className="flex gap-3 flex-col sm:flex-row">
+          <p>&copy; {new Date().getFullYear()} {env.title}. All rights reserved.</p>
+          <div className="flex gap-3 sm:ml-auto">
+            <Link to="/privacy">{t("title.privacy")}</Link>
+            <Link to="/terms">{t("title.terms")}</Link>
+          </div>
         </div>
       </footer>
     </div>

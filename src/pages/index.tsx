@@ -1,12 +1,13 @@
-import { signout } from "@/lib/signin"
-import { pageSetup } from "@/lib/pageSetup"
+import { signout } from "@/lib/sign"
+import { Button } from "@/components/ui/button"
+import { useTranslation } from "react-i18next"
 
 export default function App() {
-  pageSetup("Home")
+  const { t } = useTranslation()
 
   return (
     <div className="min-h-svh">
-      <button onClick={signout}>Signout</button>
+      <Button variant="outline" onClick={signout}>{t("pages.index.signout")}</Button>
     </div>
   )
 }

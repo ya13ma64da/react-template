@@ -4,10 +4,14 @@
 - [概要](#概要)
 - [使用技術](#使用技術)
 - [セットアップ方法](#セットアップ方法)
+- [プロジェクト構成](#プロジェクト構成)
 - [ルール](#ルール)
 - [ライセンス](#ライセンス)
 
 ## 概要
+<p align="center">
+  <img src="./screenshots/ja.gif" width="45%">
+</p>
 
 - 作者がフルスタックプロジェクト作成の簡易化のために作成したReactのテンプレートです。
 - Shadcn UI Tailwind CSSなどを使用してモダンでシンプルなデザインを実現しています。
@@ -18,7 +22,6 @@
   - React
   - Vite
   - TypeScript
-  - @generouted/react-router(自動パス作成用)
 
 - デザイン
   - Framer Motion
@@ -31,7 +34,7 @@
   - GitHub
   - Cloudflare
     - Pages
-    - Domain(必要な方のみ)
+    - Domain
   - Firebase
     - Auth
     - Functions
@@ -41,7 +44,6 @@
 - Node.jsとJavaのインストールとプロジェクトの依存関係のインストール
   - こちらは省略させていただきます
   - JavaはFirebase emulatorの起動に必要です。
-    - 不必要な方はインストールしなくてもOKです。
 
 - Firebaseプロジェクトの作成
   - Firebase Consoleにアクセスしてプロジェクトを作成してください。
@@ -68,12 +70,9 @@
   - フレームワークは`React(Vite)`を選択して環境変数も記入してください。
   - 保存してデプロイしてください。
 
-## ルール
-  - 以下の2つは守るとデザインに一貫性が保ててコードは見やすくなります。
-  - [デザインに関するルール](./rules/design.md)
-  - [コードに関するルール](./rules/code.md)
+## プロジェクト構成
+- 
 
 ## ライセンス
   - このプロジェクトはMIT Licenseのもとで公開されています。
-    - This project is licensed under the MIT License.
   - ぜひ気軽に`git clone`して使用してください。
