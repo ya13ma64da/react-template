@@ -3,17 +3,17 @@ import { Button } from "@/components/ui/button"
 import { HeaderParts } from "@/components/mine/parts"
 import { FadeinAnimation } from "@/components/mine/animation"
 
-export function SimpleTemplate({ title, children, description }: { title: string, children: React.ReactNode, description?: string }) {
+export function SimpleTemplate({ title, children, description }: { title: string, children?: React.ReactNode, description?: string }) {
   const { t } = useTranslation()
 
   return (
     <div className="min-h-svh px-4 flex flex-col items-center justify-center overflow-hidden">
       <HeaderParts />
-      <FadeinAnimation className="w-full max-w-3xl gap-4 flex flex-col">
-        <p className="text-3xl font-bold">{title}</p>
+      <FadeinAnimation className="w-full max-w-2xl gap-4 flex flex-col">
+        <p className="text-2xl font-bold">{title}</p>
         
         {description && (
-          <p className="text-xl">{description}</p>
+          <p className="text-md">{description}</p>
         )}
 
         {children}

@@ -1,2 +1,2 @@
 export { SimpleTemplate } from "./simple"
-export { LoginTemplate } from "./login"
+export { LoginTemplate } from "./sign"

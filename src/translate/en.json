@@ -3,16 +3,20 @@
     "index": {
       "signout": "Signout"
     },
+
     "introduce": {
       "getStarted": "Get started",
       "viewUpdates": "Update Info"
     },
+
     "privacy": {
       "description": "This page describes the privacy policy for your use of the Service. Please read the policy before using the Service to understand how your personal information will be used."
     },
+
     "terms": {
       "description": "This page contains the terms of use for using the service. Please read the policy and understand the prohibited actions before using this service."
     },
+
     "signin": {
       "title": "Welcome to {{title}}",
       "announce": "Don't have an account yet?",
@@ -23,6 +27,7 @@
         "google": "Continue with Google"
       }
     },
+
     "signup": {
       "title": "Let's create an account!",
       "announce": "Already have an account?",
@@ -33,21 +38,24 @@
         "google": "Create with Google"
       }
     },
+
     "notfound": {
-      "message": "Sorry... We couldn't find the page you were looking for.",
-      "goHome": "Go home"
+      "message": "Sorry... We couldn't find the page you were looking for."
     }
   },
+
   "components": {
     "policy": {
       "writeDate": "Write date"
     },
+
     "sign": {
       "email": "Mail address",
       "pass": "Password",
       "or": "OR"
     }
   },
+
   "title": {
     "updates": "Updates",
     "signin": "Sign in",
@@ -58,6 +66,7 @@
     "index": "Home",
     "introduce": "Simple react template"
   },
+  
   "main": {
     "goBack": "Go back",
     "error": "Sorry... An error occurred while loading.",

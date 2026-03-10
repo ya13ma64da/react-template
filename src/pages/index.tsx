@@ -1,13 +1,9 @@
-import { signout } from "@/lib/sign"
-import { Button } from "@/components/ui/button"
-import { useTranslation } from "react-i18next"
+import { HeaderParts } from "@/components/mine/parts"
 
 export default function App() {
-  const { t } = useTranslation()
-
   return (
     <div className="min-h-svh">
-      <Button variant="outline" onClick={signout}>{t("pages.index.signout")}</Button>
+      <HeaderParts sticky={true} />
     </div>
   )
 }

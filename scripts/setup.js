@@ -1,6 +1,6 @@
 import figlet from "figlet"
 import admin from "firebase-admin"
-import secret from "./secret.json" with { type: "json" }
+import secret from "../secret.json" with { type: "json" }
 import chalk from "chalk"
 import { select, text } from "@clack/prompts"
 import fs from "fs"

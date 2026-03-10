@@ -5,11 +5,10 @@ import { Input } from "@/components/ui/input"
 
 import { env } from "@/lib/env"
 import { Link, useNavigate } from "@/router"
-import { AppleIcon, GoogleIcon } from "@/components/mine/icons"
+import { AppleIcon, GoogleIcon, MineIcon } from "@/components/mine/icons"
 import { signinWithGoogle } from "@/lib"
 import { useTranslation } from "react-i18next"
 import { FadeinAnimation } from "@/components/mine/animation"
-import { LogoParts } from "@/components/mine/parts"
 
 export function LoginTemplate({ type }: { type: "signin" | "signup" }) {
   const { t } = useTranslation()
@@ -23,7 +22,10 @@ export function LoginTemplate({ type }: { type: "signin" | "signup" }) {
           <form>
             <FieldGroup>
               <div className="flex flex-col items-center gap-2 text-center px-6">
-                <LogoParts />
+                <Link to="/introduce">
+                  <MineIcon className="size-8" />
+                </Link>
+
                 <p className="text-xl font-bold">{t(`pages.${type}.title`, { title: env.title })}</p>
 
                 <FieldDescription>
@@ -40,6 +42,7 @@ export function LoginTemplate({ type }: { type: "signin" | "signup" }) {
                   required
                 />
               </Field>
+
               <Field>
                 <FieldLabel htmlFor="password">{t("components.sign.pass")}</FieldLabel>
                 <Input
@@ -55,7 +58,7 @@ export function LoginTemplate({ type }: { type: "signin" | "signup" }) {
 
               <FieldSeparator>{t("components.sign.or")}</FieldSeparator>
 
-              <Field className="grid gap-4 sm:grid-cols-2">
+              <Field className="grid gap-2 sm:grid-cols-2">
                 <Button variant="outline" type="button">
                   <AppleIcon className="size-4" />
                   {t(`pages.${type}.continue.apple`)}

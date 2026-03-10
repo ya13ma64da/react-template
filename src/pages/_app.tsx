@@ -1,7 +1,7 @@
 import { Outlet } from "react-router-dom"
 
 // セットアップhooks
-import { useSighinSetup } from "@/setup/hooks/useSigninSetup"
+import { useSighinSetup } from "@/setup/hooks/useSignSetup"
 import { useThemeSetup } from "@/setup/hooks/useThemeSetup"
 import { usePageSetup } from "@/setup/hooks/useTitleSetup"
 

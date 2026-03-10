@@ -8,7 +8,7 @@
     "build": "tsc -b && vite build",
     "lint": "eslint .",
     "preview": "vite preview",
-    "emulator": "firebase emulators:start --import=./firebase-data --export-on-exit",
+    "emulator": "firebase emulators:start",
     "deploy": "firebase deploy",
     "setup": "node scripts/setup.js"
   },
