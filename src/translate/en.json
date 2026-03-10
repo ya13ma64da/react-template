@@ -1,7 +1,47 @@
 {
   "pages": {
     "index": {
-      "signout": "Signout"
+      "title": "Thank you for signing in.",
+      "description": "This is the main page after signing in. You will basically be editing this. In that case, delete this section and build the system. For details, see the link below.",
+      "viewProject": "See project"
+    },
+
+    "settings": {
+      "account": {
+        "title": "Account",
+        "uid": "Your user id",
+
+        "connect": {
+          "title": "Guest account enhancements",
+          "button": "Log in and transfer to Google"
+        },
+
+        "signout": {
+          "title": "Sign out of this device",
+          "warn": "If you are a guest, your data will be erased when you sign out. Is that ok?",
+          "button": "Sign out"
+        },
+
+        "deleteAccount": {
+          "title": "Delete your account",
+          "warn": "If I delete my account, all my data will be deleted. Is that ok?",
+          "button": "Delete"
+        }
+      },
+
+      "accessibility": {
+        "title": "Accessibility",
+        "darkMode": "Dark mode",
+
+        "language": {
+          "title": "Language",
+          "select": "Select language"
+        }
+      },
+
+      "title": {
+        "main": "Main"
+      }
     },
 
     "introduce": {
@@ -71,6 +111,10 @@
     "goBack": "Go back",
     "error": "Sorry... An error occurred while loading.",
     "noData": "Sorry... The data did not exist.",
-    "unknown": "Unknown"
+    "unknown": "Unknown",
+    "signout": "Sign out",
+    "sure": "Confirm",
+    "cancel": "Cancel",
+    "continue": "Continue"
   }
 }

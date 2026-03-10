@@ -1,12 +1,24 @@
-import { HeaderParts } from "@/components/mine/parts"
-import { signout } from "@/lib"
-import { Button } from "@/components/ui/button"
+import { useTranslation } from "react-i18next"
+import { FooterParts, HeaderParts } from "@/components/mine/parts"
+
+// 設定コンポーネント
+import { AccountSettings } from "@/components/mine/settings/account"
+import { AccessibilitySettings } from "@/components/mine/settings/accessibility"
 
 export default function App() {
+  const { t } = useTranslation()
+
   return (
-    <div className="min-h-svh">
+    <div className="min-h-svh flex flex-col gap-4">
       <HeaderParts sticky={true} />
-      <Button onClick={() => signout()}>Sign out</Button>
+
+      <div className="px-4 flex flex-col gap-6">
+        <p className="font-bold text-2xl">{t("pages.settings.title.main")}</p>
+        <AccountSettings />
+        <AccessibilitySettings />
+      </div>
+
+      <FooterParts />
     </div>
   )
 }

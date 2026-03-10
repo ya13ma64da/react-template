@@ -5,8 +5,10 @@ import { Input } from "@/components/ui/input"
 
 import { env } from "@/lib/env"
 import { Link, useNavigate } from "@/router"
-import { AppleIcon, GoogleIcon, MineIcon } from "@/components/mine/icons"
-import { signinWithGoogle } from "@/lib"
+import { MineIcon } from "@/components/mine/parts"
+import { FaGoogle } from "react-icons/fa"
+import { CircleUser } from "lucide-react"
+import { signinWithGoogle, signinWithGuest } from "@/lib"
 import { useTranslation } from "react-i18next"
 import { FadeinAnimation } from "@/components/mine/animation"
 
@@ -59,16 +61,19 @@ export function LoginTemplate({ type }: { type: "signin" | "signup" }) {
               <FieldSeparator>{t("components.sign.or")}</FieldSeparator>
 
               <Field className="grid gap-2 sm:grid-cols-2">
-                <Button variant="outline" type="button">
-                  <AppleIcon className="size-4" />
-                  {t(`pages.${type}.continue.apple`)}
+                <Button variant="outline" onClick={async () => {
+                  await signinWithGuest()
+                  navigate("/")
+                }} type="button">
+                  <CircleUser />
+                  {t(`pages.${type}.continue.guest`)}
                 </Button>
 
                 <Button variant="outline" type="button" onClick={async () => {
                   await signinWithGoogle()
                   navigate("/")
                 }}>
-                  <GoogleIcon className="size-4" />
+                  <FaGoogle />
                   {t(`pages.${type}.continue.google`)}
                 </Button>
               </Field>

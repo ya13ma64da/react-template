@@ -9,7 +9,11 @@
 
 ## 概要
 <p align="center">
-  <img src="./screenshots/ja.gif" width="45%">
+  <img src="./screenshots/ja/1.png" width="70%">
+</p>
+
+<p align="center">
+  <img src="./screenshots/ja/2.png" width="70%">
 </p>
 
 - 作者がフルスタックプロジェクト作成の簡易化のために作成したReactのテンプレートです。
@@ -17,10 +21,13 @@
 - 他にもFirebaseでバックエンド(Functions)やデータ(Firestore)を管理させてセキュアで開発体験がよくなるようになっています。
 
 ## 使用技術
+- 以下は使用する技術を書いています。どれもシンプルでモダンな技術となっています。
 - メインシステム
   - React
   - Vite
   - TypeScript
+  - react-router-dom
+    - @generouted/react-router(パス自動生成&リンク型安全)
 
 - デザイン
   - Framer Motion
@@ -28,6 +35,15 @@
   - Tailwind CSS
   - Lucide React
   - React Icons
+  - react-type-animation(最初のアニメーション演出)
+  - clsx類
+
+- その他
+  - i18next
+    - i18next-browser-languagedetector(自動検出)
+  - Zustand
+  - ESLint
+  - usehooks-ts
 
 - クラウド系
   - GitHub
@@ -42,11 +58,12 @@
 ## セットアップ方法
 - Node.jsとJavaのインストールとプロジェクトの依存関係のインストール
   - こちらは省略させていただきます
-  - JavaはFirebase emulatorの起動に必要です。
+  - JavaはFirebase emulatorを起動するため必要です。
 
 - Firebaseプロジェクトの作成
   - Firebase Consoleにアクセスしてプロジェクトを作成してください。
   - Functionsを使うのでBlazeプランにしてください。
+  - AuthでEmail・Google・匿名のログイン方法を有効にしてください。
 
 - Firebase CLIにログイン
   - `npm install -g firebase-tools`でFirebase CLIをインストールしてください。
@@ -62,6 +79,14 @@
 
 - セットアップコマンドの実行
   - `npm run setup`で画面の通りにいろいろ入力してください。
+
+- テーマカラー・アイコンの設定
+  - `public/files/icons/icon.svg`と`src/component/mine/parts/mine.tsx`の両方を更新してアイコンを設定してください。
+  - 現在のテーマカラーは紫色(白・黒両対応)になっています。変えたい人は`src/index.css`で編集してください。
+
+- ルートページの編集
+  - `src/pages/index.tsx`にあるお知らせ文は削除してどんどん編集してください。
+    - `src/translate/ja.json`と`en.json`にあるお知らせ文も削除しておいてください。
 
 - GitHubに公開&Cloudflare Pagesの接続
   - GitHubにプロジェクトを公開してください。

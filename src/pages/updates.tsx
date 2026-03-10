@@ -2,7 +2,7 @@ import { SimpleTemplate } from "@/components/mine/templates/simple"
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert"
 import { errorLog } from "@/lib/log"
 import { useTranslation } from "react-i18next"
-import { useFirestore } from "@/lib/hooks/useFirestore"
+import { useFirestore } from "@/hooks/useFirestore"
 
 function Updates() {
   const { t } = useTranslation()

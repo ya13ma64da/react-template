@@ -1,5 +1,5 @@
 import { errorLog } from "@/lib/log"
-import { useFirestore } from "@/lib/hooks/useFirestore"
+import { useFirestore } from "@/hooks/useFirestore"
 import { useTranslation } from "react-i18next"
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert"
 import { SimpleTemplate } from "@/components/mine/templates/simple"

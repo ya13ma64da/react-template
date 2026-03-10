@@ -4,7 +4,7 @@ import { LogIn, Settings, } from "lucide-react"
 import { useTranslation } from "react-i18next"
 import { useAuthState } from "react-firebase-hooks/auth"
 import { auth, env } from "@/lib"
-import { MineIcon } from "@/components/mine/icons"
+import { MineIcon } from "@/components/mine/parts"
 
 export function HeaderParts({ sticky }: { sticky?: boolean}) {
   const { t } = useTranslation()
