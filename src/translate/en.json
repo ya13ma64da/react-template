@@ -115,6 +115,8 @@
     "signout": "Sign out",
     "sure": "Confirm",
     "cancel": "Cancel",
-    "continue": "Continue"
+    "continue": "Continue",
+    "close": "Close",
+    "errorMain": "Error"
   }
 }

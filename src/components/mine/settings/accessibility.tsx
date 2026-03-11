@@ -14,7 +14,7 @@ export function AccessibilitySettings() {
 
         <ChildSettingsParts isFlex>
           <p>{t("pages.settings.accessibility.language.title")}</p>
-          <Select onValueChange={(lang) => i18n.changeLanguage(lang)}>
+          <Select value={i18n.language} onValueChange={i18n.changeLanguage}>
             <SelectTrigger className="w-fit">
               <SelectValue placeholder={t("pages.settings.accessibility.language.select")} />
             </SelectTrigger>

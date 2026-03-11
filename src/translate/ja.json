@@ -115,6 +115,8 @@
     "signout": "サインアウト",
     "sure": "確認",
     "cancel": "キャンセル",
-    "continue": "続ける"
+    "continue": "続ける",
+    "close": "閉じる",
+    "errorMain": "エラー"
   }
 }

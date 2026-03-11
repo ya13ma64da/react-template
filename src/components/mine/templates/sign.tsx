@@ -3,9 +3,9 @@ import { Button } from "@/components/ui/button"
 import { Field, FieldDescription, FieldGroup, FieldLabel, FieldSeparator } from "@/components/ui/field"
 import { Input } from "@/components/ui/input"
 
-import { env } from "@/lib/env"
+import { env } from "@/lib"
 import { Link, useNavigate } from "@/router"
-import { MineIcon } from "@/components/mine/parts"
+import { MineIcon, LoadingButtonParts } from "@/components/mine/parts"
 import { FaGoogle } from "react-icons/fa"
 import { CircleUser } from "lucide-react"
 import { signinWithGoogle, signinWithGuest } from "@/lib"
@@ -61,21 +61,24 @@ export function LoginTemplate({ type }: { type: "signin" | "signup" }) {
               <FieldSeparator>{t("components.sign.or")}</FieldSeparator>
 
               <Field className="grid gap-2 sm:grid-cols-2">
-                <Button variant="outline" onClick={async () => {
-                  await signinWithGuest()
-                  navigate("/")
-                }} type="button">
+                <LoadingButtonParts
+                  variant="outline"
+                  onClick={async () => {
+                    await signinWithGuest()
+                    navigate("/")
+                  }}
+                >
                   <CircleUser />
                   {t(`pages.${type}.continue.guest`)}
-                </Button>
+                </LoadingButtonParts>
 
-                <Button variant="outline" type="button" onClick={async () => {
+                <LoadingButtonParts variant="outline" onClick={async () => {
                   await signinWithGoogle()
                   navigate("/")
                 }}>
                   <FaGoogle />
                   {t(`pages.${type}.continue.google`)}
-                </Button>
+                </LoadingButtonParts>
               </Field>
             </FieldGroup>
           </form>

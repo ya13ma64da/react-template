@@ -8,7 +8,7 @@ export async function signinWithGoogle() {
     await signInWithPopup(auth, provider)
     log("User signed in with Google successful")
   } catch(error) {
-    errorLog(error)
+    errorLog(error, true)
   }
 }
 
@@ -20,7 +20,7 @@ export async function upgradeWithGoogle() {
     await linkWithPopup(user, provider)
     log("User upgraded with Google successful")
   } catch (error) {
-    errorLog(error)
+    errorLog(error, true)
   }
 }
 
@@ -29,7 +29,7 @@ export async function signinWithGuest() {
     await signInAnonymously(auth)
     log("User signed in with guest successful")
   } catch (error) {
-    errorLog(error)
+    errorLog(error, true)
   }
 }
 
@@ -40,7 +40,7 @@ export async function deleteAccount() {
       await deleteUser(user)
       log("User deleted")
     } catch (error) {
-      errorLog(error)
+      errorLog(error, true)
     }
   }
 }
@@ -55,6 +55,6 @@ export async function signout() {
       log("User signed out")
     }
   } catch(error) {
-    errorLog(error)
+    errorLog(error, true)
   }
 }
