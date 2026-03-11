@@ -63,7 +63,7 @@
       "submit": "Sign in",
       "warn": "By signing in you agree to the following policy.",
       "continue": {
-        "apple": "Continue with Apple",
+        "guest": "Continue as guest",
         "google": "Continue with Google"
       }
     },
@@ -74,7 +74,7 @@
       "submit": "Create account",
       "warn": "By signing up you agree to the following policy.",
       "continue": {
-        "apple": "Create with Apple",
+        "guest": "Continue as guest",
         "google": "Create with Google"
       }
     },
