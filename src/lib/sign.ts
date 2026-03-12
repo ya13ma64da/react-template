@@ -1,7 +1,6 @@
 import { GoogleAuthProvider, linkWithPopup, signInAnonymously, signInWithPopup, deleteUser, getAuth } from "firebase/auth"
 import { errorLog, log, auth } from "@/lib"
 
-
 export async function signinWithGoogle() {
   try {
     const provider = new GoogleAuthProvider()

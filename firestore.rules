@@ -2,7 +2,7 @@ rules_version='2'
 
 service cloud.firestore {
   match /databases/{database}/documents {
-    // 公開データ
+    // I recommend placing all publicly available data in the public domain.
     match /public/{docId=**} {
       allow read: if true;
       allow write: if false;

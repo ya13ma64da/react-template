@@ -1,23 +1,14 @@
 import { Outlet } from "react-router-dom"
-import { useEffect } from "react"
 
-// セットアップhooks
+// Setup hooks
 import { useSighinSetup } from "@/setup/hooks/useSignSetup"
-import { useThemeStore } from "@/hooks/store"
 import { usePageSetup } from "@/setup/hooks/useTitleSetup"
+import { useThemeSetup } from "@/setup/hooks/useThemeSetup"
 
 export default function Layout() {
   useSighinSetup()
   usePageSetup()
-  const { dark } = useThemeStore()
-
-  useEffect(() => {
-    if (dark) {
-      document.body.classList.add("dark")
-    } else {
-      document.body.classList.remove("dark")
-    }
-  }, [dark])
+  useThemeSetup()
 
   return (
     <div className="bg-background text-foreground">

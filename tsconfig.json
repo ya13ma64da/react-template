@@ -6,7 +6,7 @@
   ],
 
   "compilerOptions": {
-    /* エイリアス */
+    /* Alias */
     "baseUrl": ".",
     "paths": {
       "@/*": ["./src/*"]

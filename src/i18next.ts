@@ -1,7 +1,10 @@
+// This file is the initialization file for i18n, so feel free to change any settings you like here.
+
 import i18n from "i18next"
 import { initReactI18next } from "react-i18next"
 import languageDetector from "i18next-browser-languagedetector"
 
+// Translate files
 import en from "@/translate/en.json"
 import ja from "@/translate/ja.json"
 

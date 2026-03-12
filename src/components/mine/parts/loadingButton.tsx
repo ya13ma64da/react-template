@@ -1,26 +1,30 @@
 import { Button } from "@/components/ui/button"
 import { Spinner } from "@/components/ui/spinner"
-import { useState } from "react"
+import { useLoadingStore } from "@/hooks/store"
 
 type LoadingButtonProps = React.ComponentProps<typeof Button> & {
-  onClick: () => Promise<void> | void
+  onClick: () => Promise<void> | void,
+  groupType: "sign"
 }
 
-export function LoadingButtonParts({ onClick, children, ...props }: LoadingButtonProps) {
-  const [isLoading, setIsLoading] = useState(false)
+export function LoadingButtonParts({ onClick, children, groupType, ...props }: LoadingButtonProps) {
+  const {
+    isSignLoading,
+    setIsSignLoading
+  } = useLoadingStore()
 
   const handleClick = async () => {
-    setIsLoading(true)
+    setIsSignLoading(true)
     try {
       await onClick()
     } finally {
-      setIsLoading(false)
+      setIsSignLoading(false)
     }
   }
 
   return (
-    <Button onClick={handleClick} disabled={isLoading} {...props}>
-      {isLoading ? (
+    <Button onClick={handleClick} disabled={isSignLoading} {...props}>
+      {isSignLoading ? (
         <>
           <Spinner data-icon="inline-start" />
           Processing...

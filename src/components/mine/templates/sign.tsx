@@ -1,5 +1,4 @@
 // Shadcn UI
-import { Button } from "@/components/ui/button"
 import { Field, FieldDescription, FieldGroup, FieldLabel, FieldSeparator } from "@/components/ui/field"
 import { Input } from "@/components/ui/input"
 
@@ -55,7 +54,9 @@ export function LoginTemplate({ type }: { type: "signin" | "signup" }) {
               </Field>
 
               <Field>
-                <Button type="submit">{t(`pages.${type}.submit`)}</Button>
+                <LoadingButtonParts groupType="sign" type="submit" onClick={() => {
+                  window.alert("clicked")
+                }}>{t(`pages.${type}.submit`)}</LoadingButtonParts>
               </Field>
 
               <FieldSeparator>{t("components.sign.or")}</FieldSeparator>
@@ -63,6 +64,7 @@ export function LoginTemplate({ type }: { type: "signin" | "signup" }) {
               <Field className="grid gap-2 sm:grid-cols-2">
                 <LoadingButtonParts
                   variant="outline"
+                  groupType="sign"
                   onClick={async () => {
                     await signinWithGuest()
                     navigate("/")
@@ -72,7 +74,10 @@ export function LoginTemplate({ type }: { type: "signin" | "signup" }) {
                   {t(`pages.${type}.continue.guest`)}
                 </LoadingButtonParts>
 
-                <LoadingButtonParts variant="outline" onClick={async () => {
+                <LoadingButtonParts
+                  variant="outline"
+                  groupType="sign"
+                  onClick={async () => {
                   await signinWithGoogle()
                   navigate("/")
                 }}>

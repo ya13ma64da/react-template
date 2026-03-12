@@ -4,16 +4,17 @@
 - [概要](#概要)
 - [使用技術](#使用技術)
 - [セットアップ方法](#セットアップ方法)
-- [プロジェクト構成](#プロジェクト構成)
+- [ファイル構成](#ファイル構成)
 - [ライセンス](#ライセンス)
+- [ルール](#ルール)
 
 ## 概要
 <p align="center">
-  <img src="./screenshots/ja/1.png" width="70%">
+  <img src="./description/screenshots/ja/1.png" width="70%">
 </p>
 
 <p align="center">
-  <img src="./screenshots/ja/2.png" width="70%">
+  <img src="./description/screenshots/ja/2.png" width="70%">
 </p>
 
 - 作者がフルスタックプロジェクト作成の簡易化のために作成したReactのテンプレートです。
@@ -22,38 +23,6 @@
 
 ## 使用技術
 - 以下は使用する技術を書いています。どれもシンプルでモダンな技術となっています。
-- メインシステム
-  - React
-  - Vite
-  - TypeScript
-  - react-router-dom
-    - @generouted/react-router(パス自動生成&リンク型安全)
-
-- デザイン
-  - Framer Motion
-  - Shadcn UI(Radix)
-  - Tailwind CSS
-  - Lucide React
-  - React Icons
-  - react-type-animation(最初のアニメーション演出)
-  - clsx類
-
-- その他
-  - i18next
-    - i18next-browser-languagedetector(自動検出)
-  - Zustand
-  - ESLint
-  - usehooks-ts
-
-- クラウド系
-  - GitHub
-  - Cloudflare
-    - Pages
-    - Domain
-  - Firebase
-    - Auth
-    - Functions
-    - Firestore
 
 ## セットアップ方法
 - Node.jsとJavaのインストールとプロジェクトの依存関係のインストール
@@ -78,7 +47,7 @@
   - `npm run emulator`でエミュレーターを起動しておいてください。
 
 - セットアップコマンドの実行
-  - `npm run setup`で画面の通りにいろいろ入力してください。
+  - `npm run setup`で`Normal setup`を選んで画面の通りにいろいろ入力してください。
 
 - テーマカラー・アイコンの設定
   - `public/files/icons/icon.svg`と`src/component/mine/parts/mine.tsx`の両方を更新してアイコンを設定してください。
@@ -94,8 +63,26 @@
   - フレームワークは`React(Vite)`を選択して環境変数も記入してください。
   - 保存してデプロイしてください。
 
-## プロジェクト構成
-- 
+## ファイル構成
+- ほぼすべてのファイルの最初にコメントでそのファイルの説明を書いています。
+- 説明不要なファイルは省かせていただきます。
+  - もしコメントされていなくて下にも書かれていなければ調べてみてください。
+- コメントできないファイルは以下に説明をまとめておきます。
+  - indexとついたファイル
+    - 基本的に何かのメインファイルです。
+  - functions/src/secret.json
+    - `secret.json`のコピーです。
+    - `functions`でFirebase adminを使うためにセットアップスクリプトが生成したものです。
+  - description
+    - このREADMEのためのフォルダーです。消しても構いません。
+  - public/files/icons/icon.svg
+    - `index.html`のアイコンの画像です。
+    - あなたの画像に変更して下さい。
 
 ## ライセンス
   - このプロジェクトはMIT Licenseのもとで公開されています。
+
+## ルール
+- 以下は守るとコードとデザインに一貫性が出ます。
+- [コードに関するルール](./rules/code.md)
+- [デザインに関するルール](./rules/design.md)

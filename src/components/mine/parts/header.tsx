@@ -11,7 +11,7 @@ export function HeaderParts({ sticky }: { sticky?: boolean}) {
   const [user, loading] = useAuthState(auth)
 
   return (
-    <div className={`px-5 bg-background py-3 top-0 flex gap-4 w-full ${sticky ? "sticky" : "fixed"}`}>
+    <div className={`px-4 bg-background py-3 top-0 items-center flex gap-4 w-full ${sticky ? "sticky" : "fixed"}`}>
       <Link to="/" className="flex gap-2 items-center sm:border-r-2 pr-2">
         <MineIcon />
         <p className="font-mono text-primary hidden sm:block">{env.title}</p>

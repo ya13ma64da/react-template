@@ -5,7 +5,7 @@
 
 @custom-variant dark (&:is(.dark *));
 
-/* スクロールバー */
+/* Scroll ber */
 ::-webkit-scrollbar {
   width: 8px;
 }

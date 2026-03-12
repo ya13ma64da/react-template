@@ -49,10 +49,7 @@
     "providers": {
       "anonymous": true,
       "emailPassword": true,
-      "googleSignIn": {
-        "oAuthBrandDisplayName": "react-template",
-        "supportEmail": "ya13ma64da@gmail.com"
-      }
+      "googleSignIn": {}
     }
   }
 }

@@ -3,7 +3,7 @@ import { createRoot } from "react-dom/client"
 import { createBrowserRouter, RouterProvider } from "react-router-dom"
 import { routes } from "@generouted/react-router"
 import "@/index.css"
-import "@/setup/i18next"
+import "@/i18next"
 
 const router = createBrowserRouter(routes)
 createRoot(document.getElementById("root")!).render(

@@ -1,3 +1,5 @@
+// This file is a component that makes it easy to add fade-in animations.
+
 import { motion } from "framer-motion"
 
 export function FadeinAnimation({ className, children }: { className?: string, children: React.ReactNode}) {
