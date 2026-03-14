@@ -1,3 +1,5 @@
+// This file is a part for creating a settings page.
+
 import { FadeinAnimation } from "@/components/mine/animation"
 
 export function ParentSettingsParts({ children }: { children: React.ReactNode }) {
